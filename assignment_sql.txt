@@ -1,0 +1,18 @@
+* create database assignment;
+* use assignment;
+* create table sailors(sid int not null primary key,sname varchar(50) not null,rating int not null,age int not null);
+* insert into sailors(sid,sname,rating,age) values(22,'dustin',7,45.0);
+* insert into sailors(sid,sname,rating,age) values(29,'brutus',1,33.0);
+* insert into sailors(sid,sname,rating,age) values(31,'lubber',9,55.0);
+* insert into sailors(sid,sname,rating,age) values(32,'andy',8,25.0);
+* insert into sailors(sid,sname,rating,age) values(58,'rusty',10,35.0);
+* select * from sailors;
+* create table boats(bid int not null primary key,bname varchar(50) not null,color varchar(50) not null)
+
+
+1)select sname from sailors where sid in (select sid_fk from reserves where bid_fk in (select bid from boats where color = "red"));
+
+2)select distinct(sname) from sailors s inner join reserves r on s.sid = r.sid_fk;
+select sname from sailors where sid in (select sid_fk from reserves group by sid_fk);
+
+3)
