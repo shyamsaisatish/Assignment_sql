@@ -15,4 +15,40 @@
 2)select distinct(sname) from sailors s inner join reserves r on s.sid = r.sid_fk;
 select sname from sailors where sid in (select sid_fk from reserves group by sid_fk);
 
-3)
+3)update sailors set rating = rating*2 where sid =(select distinct(r1.sid_fk) from reserves r1, reserves r2 where r1.day = r2.day and r1.bid_fk <> r2.bid_fk);
+
+4)select age from sailors where sname like 'b%b';
+
+5)select sname from sailors where sid in (select sid_fk from reserves where bid_fk in (select bid from boats where color = "red" or color = "green"));
+
+6)select sid from sailors where sid in (select sid_fk from reserves where bid in (select bid from boats where bid not in (select bid from boats where color="green" or color ="blue")));
+
+7)select sname from sailors where rating = (select max(rating) from sailors);
+
+8)select sname from sailors where age = (select max(age) from sailors);
+
+9)select count(sname) from sailors group by sname;
+
+12)select sid_fk from reserves group by sid_fk having count(sid_fk) = 1;
+
+13)select sid from sailors where sid not in(select sid_fk from reserves group by sid_fk having count(sid_fk) >= 1);
+
+14)select sid_fk from reserves group by bid_fk having count(bid_fk) > (select count(bid) from boats);
+
+15)select s.sname from sailors s where s.age > (select s1.age from sailors s1 where s1.sname ="Dustin");
+
+16)select sname from sailors order by rating desc limit 0, 1;
+
+17)select sname from sailors order by rating desc limit 2, 1;
+
+18)select sid_fk from reserves where bid_fk = (select bid_fk from reserves where sid_fk = 31);
+
+19)select s.sid, s.sname, r.bid from sailors s  join reserves r on s.sid = r.sid_fk;
+
+23)select *  from customer order by cust_id limit 0, 3;
+
+24)select * from customer where cust_id between 2 and 5;
+
+//
+* update sailors set age = 30 where age not between 18 and 40;
+* update boats set color="blue" where color not in("blue", "green", "red");
